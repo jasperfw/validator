@@ -1,0 +1,29 @@
+{
+  "name": "jasperfw/validator",
+  "description": "Form and data validation library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "William Eldridge",
+      "homepage": "http://wigedev.net"
+    }
+  ],
+  "require": {
+    "jasperfw/core": "dev-master",
+    "php": "^7.2",
+    "psr/log": "1.0.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "JasperFW\\Validator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JasperFW\\ValidatorTest\\": "tests/"
+    }
+  }
+}
