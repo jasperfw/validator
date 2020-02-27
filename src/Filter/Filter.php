@@ -41,9 +41,7 @@ abstract class Filter
     }
 
     /**
-     * @param mixed     $rule          The value to check, if any
-     * @param string    $error_message The error message to record on failure
-     * @param Validator $validator     The validator this constraint is attached to
+     * @param Validator $validator The validator this constraint is attached to
      */
     public function __construct(?Validator $validator = null)
     {
