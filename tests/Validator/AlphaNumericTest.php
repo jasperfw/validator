@@ -9,9 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class AlphaNumericTest extends TestCase
 {
-    /**
-     * @throws InvalidInputException
-     */
     public function testQuickValidateValidValue()
     {
         $test_value = 'abc123';
@@ -19,9 +16,6 @@ class AlphaNumericTest extends TestCase
         $this->assertEquals($test_value, $actual);
     }
 
-    /**
-     * @throws InvalidInputException
-     */
     public function testQuickValidateInvalidValue()
     {
         $test_value = 'abc 123';
@@ -29,9 +23,6 @@ class AlphaNumericTest extends TestCase
         AlphaNumeric::quickValidate($test_value);
     }
 
-    /**
-     * @throws InvalidInputException
-     */
     public function testQuickValidateViolatesConstraint()
     {
         $test_value = 'abc_123';
@@ -40,9 +31,6 @@ class AlphaNumericTest extends TestCase
         AlphaNumeric::quickValidate($test_value, [$constraint]);
     }
 
-    /**
-     * @throws InvalidInputException
-     */
     public function testValidateForFormValidValue()
     {
         $test_value = 'abc123';
@@ -50,9 +38,6 @@ class AlphaNumericTest extends TestCase
         $this->assertEquals($test_value, $actual);
     }
 
-    /**
-     * @throws InvalidInputException
-     */
     public function testValidateForFormInvalidValue()
     {
         $test_value = 'abc 123';

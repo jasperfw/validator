@@ -2,15 +2,12 @@
 
 namespace JasperFW\ValidatorTest\Validator;
 
-use JasperFW\DataInterface\Validator\Exception\InvalidInputException;
-use JasperFW\DataInterface\Validator\Validator\Alpha;
+use JasperFW\Validator\Exception\InvalidInputException;
+use JasperFW\Validator\Validator\Alpha;
 use PHPUnit\Framework\TestCase;
 
 class AlphaTest extends TestCase
 {
-    /**
-     * @throws InvalidInputException
-     */
     public function testQuickValidateValidValue()
     {
         $test_value = 'abc';
@@ -18,9 +15,6 @@ class AlphaTest extends TestCase
         $this->assertEquals($test_value, $actual);
     }
 
-    /**
-     * @throws InvalidInputException
-     */
     public function testQuickValidateInvalidValue()
     {
         $test_value = 'abc 123';

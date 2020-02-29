@@ -46,8 +46,10 @@ abstract class Validator
      *
      * TODO: Decide should this just return true/false if the value is/not valid?
      *
-     * @param string $value       The value to test
-     * @param array  $constraints The definition of the constraints
+     * @param string      $value        The value to test
+     * @param array       $filters      Filter definitions
+     * @param array       $constraints  The definition of the constraints
+     * @param string|null $errorMessage The error to be displayed if this is not valid
      *
      * @return mixed The value if valid
      */
@@ -58,7 +60,7 @@ abstract class Validator
         ?string &$errorMessage = ''
     ) {
         // Initialize the validator
-        $validator = new static('quickValidate function', InputSources::PASSED, [], $value, null);
+        $validator = new static('quickValidate function', InputSources::PASSED, [], [], $value, null);
         // Add the filters
         if (is_array($filters) && count($filters) > 0) {
             foreach ($filters as $filter) {
@@ -95,6 +97,7 @@ abstract class Validator
      * @param int          $dataSource   The array the field value is stored in, or null if the value is being passed
      *                                   directly
      * @param Constraint[] $constraints  Additional rules to check against the passed value
+     * @param array        $filters      Filters to pre-process the input
      * @param null|string  $fieldValue   The value, if it is being directly passed.
      * @param null|string  $errorMessage An error message, or null to use the default
      */
@@ -102,6 +105,7 @@ abstract class Validator
         string $fieldName,
         int $dataSource = InputSources::EITHER,
         array $constraints = [],
+        array $filters = [],
         string $fieldValue = null,
         string $errorMessage = null
     ) {
@@ -110,6 +114,14 @@ abstract class Validator
 
         if (null !== $errorMessage) {
             $this->errorMessage = $errorMessage;
+        }
+
+        $this->filters = [];
+        if (null === $filters) {
+            $filters = [];
+        }
+        foreach ($filters as $filter) {
+            $this->addFilter($filter);
         }
 
         $this->constraints = [];

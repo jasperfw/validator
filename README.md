@@ -1,14 +1,21 @@
-# Jasper FW - Data Interface
+# Jasper FW - Validator
 
 Current Stability: **Beta**
 
-The Data Inteface Library provides a range of utilities for interacting with data, from database access classes wrapping
-PDO for various database systems, to automated data modeling and management classes, to a powerful form building and
-validation system. Put together, these tools provide the ability to model a database table and manage the data therin
-with a simple PHP array.
+The Validator library provides a comprehensive, yet easy to implement and expand, input and data validation system.
 
 ## Features
 
-- Automatically generate forms, form validation, and database operations from simple PHP array definitions.
-- Integrate with popular database engines (MySQL and MS Server currently, partial DB2 support, more coming soon.)
-- Simple, security-minded input validation
+- Supports a wide variety of common inputs
+- Allows custom validation rules through the use of constraints
+- Can pre-sanitize values with the use of filters
+- Can easily be expanded with new data types, constraints and filters.
+
+# Instructions
+
+## Installation
+Install using composer `composer require "jasperfw\validator"`
+
+## Basic Usage
+### Quickly validate a single value
+### Validate a set of data
