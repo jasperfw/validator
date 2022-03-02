@@ -19,34 +19,34 @@ use RuntimeException;
 abstract class Validator
 {
     /** @var string The regex used by the class */
-    protected static $regex = '/^.+$/i';
+    protected static string $regex = '/^.+$/i';
     /** @var string The name of the field */
-    protected $fieldName;
+    protected string $fieldName;
     /** @var int The source of the data */
-    protected $dataSource;
+    protected int $dataSource;
     /** @var Filter[] Filters to pre-process the provided value */
-    protected $filters;
+    protected array $filters;
     /** @var Constraint[] Additional rules to check */
-    protected $constraints;
+    protected array $constraints;
     /** @var mixed The value being validated */
-    protected $rawValue;
+    protected mixed $rawValue;
     /** @var string The validated value */
-    protected $value;
+    protected string $value;
     /** @var null|bool True if the value is valid */
-    protected $isValid = null;
-    /** @var string The error message for the validation, or null if no error was triggered */
-    protected $theMessage = null;
+    protected ?bool $isValid = null;
+    /** @var ?string The error message for the validation, or null if no error was triggered */
+    protected ?string $theMessage = null;
     /** @var ValidationCheckerInterface Reference to the set of validator for the current form */
-    protected $validationSet;
+    protected ValidationCheckerInterface $validationSet;
     /** @var string The error message to display if the validation fails */
-    protected $errorMessage = 'The value of %s is not valid.';
+    protected string $errorMessage = 'The value of %s is not valid.';
 
     /**
      * Validates input as a one-off. Allows quick and dirty validation. Returns null if the value is not valid.
      *
      * TODO: Decide should this just return true/false if the value is/not valid?
      *
-     * @param string      $value        The value to test
+     * @param string|null $value        The value to test
      * @param array       $filters      Filter definitions
      * @param array       $constraints  The definition of the constraints
      * @param string|null $errorMessage The error to be displayed if this is not valid
@@ -55,10 +55,11 @@ abstract class Validator
      */
     public static function quickValidate(
         ?string $value,
-        array $filters = [],
-        array $constraints = [],
+        array   $filters = [],
+        array   $constraints = [],
         ?string &$errorMessage = ''
-    ) {
+    ): mixed
+    {
         // Initialize the validator
         $validator = new static('quickValidate function', InputSources::PASSED, [], [], $value, null);
         // Add the filters
@@ -152,7 +153,7 @@ abstract class Validator
      *
      * @param array|Filter $filter The filter object or definition array to be added
      */
-    public function addFilter($filter): void
+    public function addFilter(array|Filter $filter): void
     {
         /** @var Filter|array $filter */
         if (is_array($filter) && count($filter) > 0) {
@@ -162,7 +163,7 @@ abstract class Validator
             throw new RuntimeException('Unable to add constraint.');
         }
         $filter->setValidator($this);
-        array_push($this->filters, $filter);
+        $this->filters[] = $filter;
     }
 
     /**
@@ -170,7 +171,7 @@ abstract class Validator
      *
      * @param array|Constraint $constraint A constraint object or the array defining a new constraint
      */
-    public function addConstraint($constraint): void
+    public function addConstraint(Constraint|array $constraint): void
     {
         /** @var Constraint|array $constraint */
         if (is_array($constraint) && count($constraint) > 0) {
@@ -180,7 +181,7 @@ abstract class Validator
             throw new RuntimeException('Unable to add constraint.');
         }
         $constraint->setValidator($this);
-        array_push($this->constraints, $constraint);
+        $this->constraints[] = $constraint;
     }
 
     /**
@@ -219,9 +220,7 @@ abstract class Validator
     public function reportError(string $errorMessage): void
     {
         $errorMessage = sprintf($errorMessage, $this->fieldName);
-        if (null != $this->validationSet) {
-            $this->validationSet->addValidationError(new ValidationError($this->fieldName, $errorMessage));
-        }
+        $this->validationSet?->addValidationError(new ValidationError($this->fieldName, $errorMessage));
     }
 
     /**
@@ -266,7 +265,7 @@ abstract class Validator
      *
      * @return mixed
      */
-    public function getRawValue()
+    public function getRawValue(): mixed
     {
         return $this->rawValue;
     }
@@ -324,7 +323,7 @@ abstract class Validator
      *
      * @return string
      */
-    protected function filter($value)
+    protected function filter(mixed $value): string
     {
         foreach ($this->filters as $filter) {
             $filter->filter($value);
@@ -340,7 +339,7 @@ abstract class Validator
      *
      * @return bool True if the value is valid
      */
-    protected function checkValidity($value): bool
+    protected function checkValidity(mixed $value): bool
     {
         if (preg_match(static::$regex, $value)) {
             return true;

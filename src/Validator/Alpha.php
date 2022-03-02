@@ -11,5 +11,5 @@ namespace JasperFW\Validator\Validator;
  */
 class Alpha extends Validator
 {
-    protected static $regex = '/^[a-zA-Z]+$/i';
+    protected static string $regex = '/^[a-zA-Z]+$/i';
 }

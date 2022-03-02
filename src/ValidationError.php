@@ -2,6 +2,8 @@
 
 namespace JasperFW\Validator;
 
+use JetBrains\PhpStorm\Pure;
+
 /**
  * Class ValidationError
  *
@@ -51,7 +53,7 @@ class ValidationError
      *
      * @return string
      */
-    public function __toString(): string
+    #[Pure] public function __toString(): string
     {
         return $this->getErrorMessage();
     }

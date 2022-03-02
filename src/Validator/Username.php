@@ -11,5 +11,5 @@ namespace JasperFW\Validator\Validator;
  */
 class Username extends Validator
 {
-    protected static $regex = '/^.+$/i';
+    protected static string $regex = '/^.+$/i';
 }

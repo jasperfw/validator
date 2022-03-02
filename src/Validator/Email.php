@@ -13,7 +13,7 @@ namespace JasperFW\Validator\Validator;
  */
 class Email extends Validator
 {
-    protected static $regex = '/^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,4}$/i';
+    protected static string $regex = '/^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,4}$/i';
 
     /**
      * Filtration is expected to be run by the validate method before the validation takes place, and by default
@@ -27,7 +27,7 @@ class Email extends Validator
      *
      * @return string
      */
-    protected function filter($value): string
+    protected function filter(mixed $value): string
     {
         $value = parent::filter($value);
         return strtolower(trim($value));

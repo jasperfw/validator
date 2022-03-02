@@ -13,17 +13,17 @@ namespace JasperFW\Validator\Validator;
 class Date extends Validator
 {
     /** @var string The default error message */
-    protected $errorMessage = 'The date provided was not recognized.';
+    protected string $errorMessage = 'The date provided was not recognized.';
 
     /**
      * This is the function that does the actual checking. This should allow either matches to the regex or empty
      * values.
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */
-    protected function checkValidity($value): bool
+    protected function checkValidity(mixed $value): bool
     {
         if ('' === $value) {
             return true;

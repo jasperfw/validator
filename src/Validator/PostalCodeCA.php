@@ -11,5 +11,5 @@ namespace JasperFW\Validator\Validator;
  */
 class PostalCodeCA extends Validator
 {
-    protected static $regex = '/^[A-Za-z][0-9][A-Za-z][ -]?[0-9][A-Za-z][0-9]$/i';
+    protected static string $regex = '/^[A-Za-z][0-9][A-Za-z][ -]?[0-9][A-Za-z][0-9]$/i';
 }

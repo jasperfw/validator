@@ -11,5 +11,5 @@ namespace JasperFW\Validator\Validator;
  */
 class Boolean extends Validator
 {
-    protected static $regex = '/^(true|false|Y|N)$/i';
+    protected static string $regex = '/^(true|false|Y|N)$/i';
 }

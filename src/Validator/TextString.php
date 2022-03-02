@@ -12,5 +12,5 @@ namespace JasperFW\Validator\Validator;
  */
 class TextString extends Validator
 {
-    protected static $regex = '/^.*$/i';
+    protected static string $regex = '/^.*$/i';
 }

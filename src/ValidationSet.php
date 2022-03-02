@@ -16,11 +16,11 @@ use JasperFW\Validator\Validator\Validator;
 class ValidationSet implements ValidationCheckerInterface
 {
     /** @var Validator[] */
-    private $validators = [];
+    private array $validators = [];
     /** @var ValidationError[] */
-    private $validationErrors = [];
+    private array $validationErrors = [];
     /** @var bool True if the validation has been run */
-    private $validated = false;
+    private bool $validated = false;
 
     /**
      *
@@ -38,7 +38,7 @@ class ValidationSet implements ValidationCheckerInterface
     {
         $this->validated = false;
         $validator->setValidationSet($this);
-        array_push($this->validators, $validator);
+        $this->validators[] = $validator;
         return $this;
     }
 
@@ -49,7 +49,7 @@ class ValidationSet implements ValidationCheckerInterface
      */
     public function addValidationError(ValidationError $validationError): ValidationCheckerInterface
     {
-        array_push($this->validationErrors, $validationError);
+        $this->validationErrors[] = $validationError;
         return $this;
     }
 
@@ -97,8 +97,8 @@ class ValidationSet implements ValidationCheckerInterface
         } else {
             foreach ($this->validationErrors as $error) {
                 if (!in_array($error->getFieldName(), $fieldNames)) {
-                    array_push($returnedErrors, $error);
-                    array_push($fieldNames, $error->getFieldName());
+                    $returnedErrors[] = $error;
+                    $fieldNames[] = $error->getFieldName();
                 }
             }
         }

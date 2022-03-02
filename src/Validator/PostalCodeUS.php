@@ -11,5 +11,5 @@ namespace JasperFW\Validator\Validator;
  */
 class PostalCodeUS extends Validator
 {
-    protected static $regex = '/^[0-9]{5}(\-[0-9]{4})?$/i';
+    protected static string $regex = '/^[0-9]{5}(\-[0-9]{4})?$/i';
 }

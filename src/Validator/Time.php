@@ -12,5 +12,5 @@ namespace JasperFW\Validator\Validator;
  */
 class Time extends Validator
 {
-    protected static $regex = '/^[0-9]{2}:[0-9]{2}+$/i';
+    protected static string $regex = '/^[0-9]{2}:[0-9]{2}+$/i';
 }

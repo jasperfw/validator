@@ -13,5 +13,5 @@ namespace JasperFW\Validator\Validator;
  */
 class Phone extends Validator
 {
-    protected static $regex = '/^\+[0-9]{1,3} [0-9]{6,} ?(x[0-9]+)?$/i';
+    protected static string $regex = '/^\+[0-9]{1,3} [0-9]{6,} ?(x[0-9]+)?$/i';
 }

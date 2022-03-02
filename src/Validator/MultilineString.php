@@ -11,5 +11,5 @@ namespace JasperFW\Validator\Validator;
  */
 class MultilineString extends Validator
 {
-    protected static $regex = '/^.*$/mi';
+    protected static string $regex = '/^.*$/mi';
 }
