@@ -11,7 +11,7 @@ namespace JasperFW\Validator\Constraint;
  */
 class MaximumLength extends Constraint
 {
-    protected $error_message = 'The value provided has too many characters.';
+    protected string $error_message = 'The value provided has too many characters.';
 
     /**
      * Check the constraint. Child classes should attempt to report the error to the validator.
@@ -20,7 +20,7 @@ class MaximumLength extends Constraint
      *
      * @return bool True if it passes, false if not
      */
-    public function check($value): bool
+    public function check(mixed $value): bool
     {
         return (strlen($value) <= $this->rule);
     }

@@ -14,7 +14,7 @@ use Exception;
  */
 class DateFormat extends Constraint
 {
-    protected $error_message = 'The value provided is not in a recognized format.';
+    protected string $error_message = 'The value provided is not in a recognized format.';
 
     /**
      * Check the constraint. Child classes should attempt to report the error to the validator.
@@ -23,10 +23,10 @@ class DateFormat extends Constraint
      *
      * @return bool True if it passes, false if not
      */
-    public function check($value): bool
+    public function check(mixed $value): bool
     {
         try {
-            if (false == DateTime::createFromFormat($this->rule, $value)) {
+            if (!DateTime::createFromFormat($this->rule, $value)) {
                 return false;
             }
             return true;

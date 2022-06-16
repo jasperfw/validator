@@ -11,7 +11,7 @@ namespace JasperFW\Validator\Constraint;
  */
 class MaximumValue extends Constraint
 {
-    protected $error_message = 'The value provided is greater than the maximum allowable value.';
+    protected string $error_message = 'The value provided is greater than the maximum allowable value.';
 
     /**
      * Check the constraint. Child classes should attempt to report the error to the validator.
@@ -20,7 +20,7 @@ class MaximumValue extends Constraint
      *
      * @return bool True if it passes, false if not
      */
-    public function check($value): bool
+    public function check(mixed $value): bool
     {
         return ($value <= $this->rule);
     }

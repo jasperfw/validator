@@ -15,11 +15,11 @@ use JasperFW\Validator\Validator\Validator;
  */
 abstract class Constraint
 {
-    protected $rule;
-    protected $error_message;
+    protected mixed $rule;
+    protected string $error_message = '';
 
-    /** @var Validator */
-    protected $validator;
+    /** @var Validator|null */
+    protected ?Validator $validator;
 
     /**
      * Create a constraint according to the passed definition array. The definition must contain a class, which is the
@@ -38,17 +38,17 @@ abstract class Constraint
             throw new BadDefinitionException('The constraint could not be constructed.');
         }
         $class = $definition['class'];
-        $rule = isset($definition['rule']) ? $definition['rule'] : null;
-        $error_message = isset($definition['errorMessage']) ? $definition['errorMessage'] : null;
+        $rule = $definition['rule'] ?? null;
+        $error_message = $definition['errorMessage'] ?? null;
         return new $class($rule, $error_message);
     }
 
     /**
-     * @param mixed     $rule          The value to check, if any
-     * @param string    $error_message The error message to record on failure
-     * @param Validator $validator     The validator this constraint is attached to
+     * @param mixed|null     $rule          The value to check, if any
+     * @param string|null    $error_message The error message to record on failure
+     * @param Validator|null $validator     The validator this constraint is attached to
      */
-    public function __construct($rule = null, ?string $error_message = null, ?Validator &$validator = null)
+    public function __construct(mixed $rule = null, ?string $error_message = null, ?Validator &$validator = null)
     {
         $this->rule = $rule;
         if (null != $error_message) {
@@ -95,5 +95,5 @@ abstract class Constraint
      *
      * @return bool True if it passes, false if not
      */
-    abstract public function check($value): bool;
+    abstract public function check(mixed $value): bool;
 }

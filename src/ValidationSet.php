@@ -132,7 +132,7 @@ class ValidationSet implements ValidationCheckerInterface
         if (false === $this->validated) {
             $this->validate();
         }
-        return (false === $this->getErrorByFieldName($fieldName));
+        return (false == $this->getErrorByFieldName($fieldName));
     }
 
     /**
@@ -158,10 +158,10 @@ class ValidationSet implements ValidationCheckerInterface
      *
      * @param string $fieldName The name of the field
      *
-     * @return mixed The value of the field
+     * @return string The value of the field
      * @throws InvalidInputException If the field name does not exist
      */
-    public function getFieldValue(string $fieldName)
+    public function getFieldValue(string $fieldName): string
     {
         if (false === $this->validated) {
             $this->validate();
@@ -179,11 +179,12 @@ class ValidationSet implements ValidationCheckerInterface
      *
      * TODO: Should this return something or be made internal?
      */
-    public function validate(): void
+    public function validate(): mixed
     {
         foreach ($this->validators as $validator) {
             $validator->validate();
         }
         $this->validated = true;
+        return null;
     }
 }

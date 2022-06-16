@@ -12,9 +12,9 @@ namespace JasperFW\Validator\Constraint;
  */
 class ComplexPassword extends Constraint
 {
-    protected $error_message = 'The password must contain at least 3 of the 4: A capital letter, a lower case character, a number, a special character.';
+    protected string $error_message = 'The password must contain at least 3 of the 4: A capital letter, a lower case character, a number, a special character.';
 
-    protected $pattern = '/(?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/i';
+    protected string $pattern = '/(?=^.{6,255}$)((?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*/i';
 
     /**
      * Check the constraint. Child classes should attempt to report the error to the validator.
@@ -23,7 +23,7 @@ class ComplexPassword extends Constraint
      *
      * @return bool True if it passes, false if not
      */
-    public function check($value): bool
+    public function check(mixed $value): bool
     {
         return preg_match($this->pattern, $value);
     }

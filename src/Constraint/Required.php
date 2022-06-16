@@ -12,7 +12,7 @@ namespace JasperFW\Validator\Constraint;
 class Required extends Constraint
 {
     /** @var string */
-    protected $error_message = 'This field is required.';
+    protected string $error_message = 'This field is required.';
 
     /**
      * Check the constraint. Child classes should attempt to report the error to the validator.
@@ -21,7 +21,7 @@ class Required extends Constraint
      *
      * @return bool True if it passes, false if not
      */
-    public function check($value): bool
+    public function check(mixed $value): bool
     {
         if ('' === $value) {
             $this->reportError();

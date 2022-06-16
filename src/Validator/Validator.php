@@ -20,24 +20,24 @@ abstract class Validator
 {
     /** @var string The regex used by the class */
     protected static string $regex = '/^.+$/i';
-    /** @var string The name of the field */
-    protected string $fieldName;
-    /** @var int The source of the data */
-    protected int $dataSource;
+    /** @var string|null The name of the field */
+    protected ?string $fieldName;
+    /** @var int|null The source of the data */
+    protected ?int $dataSource;
     /** @var Filter[] Filters to pre-process the provided value */
-    protected array $filters;
+    protected array $filters = [];
     /** @var Constraint[] Additional rules to check */
-    protected array $constraints;
+    protected array $constraints = [];
     /** @var mixed The value being validated */
-    protected mixed $rawValue;
-    /** @var string The validated value */
-    protected string $value;
+    protected mixed $rawValue = null;
+    /** @var string|null The validated value */
+    protected ?string $value = null;
     /** @var null|bool True if the value is valid */
     protected ?bool $isValid = null;
     /** @var ?string The error message for the validation, or null if no error was triggered */
     protected ?string $theMessage = null;
-    /** @var ValidationCheckerInterface Reference to the set of validator for the current form */
-    protected ValidationCheckerInterface $validationSet;
+    /** @var ValidationCheckerInterface|null Reference to the set of validator for the current form */
+    protected ?ValidationCheckerInterface $validationSet = null;
     /** @var string The error message to display if the validation fails */
     protected string $errorMessage = 'The value of %s is not valid.';
 
@@ -51,14 +51,14 @@ abstract class Validator
      * @param array       $constraints  The definition of the constraints
      * @param string|null $errorMessage The error to be displayed if this is not valid
      *
-     * @return mixed The value if valid
+     * @return string|null The value if valid
      */
     public static function quickValidate(
         ?string $value,
         array   $filters = [],
         array   $constraints = [],
         ?string &$errorMessage = ''
-    ): mixed
+    ): ?string
     {
         // Initialize the validator
         $validator = new static('quickValidate function', InputSources::PASSED, [], [], $value, null);

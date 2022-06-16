@@ -15,10 +15,8 @@ use JasperFW\Validator\Validator\Validator;
  */
 abstract class Filter
 {
-    /**
-     * @var Validator|null
-     */
-    protected $validator;
+    /** @var Validator|null */
+    protected ?Validator $validator;
 
     /**
      * Create a constraint according to the passed definition array. The definition must contain a class, which is the
@@ -41,7 +39,7 @@ abstract class Filter
     }
 
     /**
-     * @param Validator $validator The validator this constraint is attached to
+     * @param Validator|null $validator The validator this constraint is attached to
      */
     public function __construct(?Validator $validator = null)
     {

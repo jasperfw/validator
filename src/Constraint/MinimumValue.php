@@ -12,7 +12,7 @@ namespace JasperFW\Validator\Constraint;
 class MinimumValue extends Constraint
 {
     /** @var string */
-    protected $error_message = 'The value provided is less than the minimum allowed value.';
+    protected string $error_message = 'The value provided is less than the minimum allowed value.';
 
     /**
      * Check the constraint. Child classes should attempt to report the error to the validator.
@@ -21,7 +21,7 @@ class MinimumValue extends Constraint
      *
      * @return bool True if it passes, false if not
      */
-    public function check($value): bool
+    public function check(mixed $value): bool
     {
         return ($value <= $this->rule);
     }

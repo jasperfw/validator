@@ -15,7 +15,7 @@ class Regex extends Constraint
     /**
      * @inheritDoc
      */
-    public function check($value): bool
+    public function check(mixed $value): bool
     {
         return preg_match($this->rule, $value);
     }

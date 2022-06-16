@@ -11,5 +11,5 @@ namespace JasperFW\Validator\Validator;
  */
 class Decimal
 {
-    protected static $regex = '/^[0-9]+(\./^[0-9]+)?$/i';
+    protected static string $regex = '/^[0-9]+(\./^[0-9]+)?$/i';
 }

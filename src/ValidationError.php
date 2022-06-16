@@ -14,9 +14,9 @@ use JetBrains\PhpStorm\Pure;
 class ValidationError
 {
     /** @var string The name of the field */
-    protected $fieldName;
+    protected string $fieldName;
     /** @var string The text of the error message */
-    protected $errorMessage;
+    protected string $errorMessage;
 
     /**
      * @param string $fieldName

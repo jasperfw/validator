@@ -62,5 +62,5 @@ interface ValidationCheckerInterface
      *
      * @return mixed
      */
-    public function validate();
+    public function validate(): mixed;
 }
